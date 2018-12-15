@@ -9,22 +9,24 @@
 
 //Intrisics can be calculated using opencv sample code under opencv/sources/samples/cpp/tutorial_code/calib3d
 //Normally, you can also apprximate fx and fy by image width, cx by half image width, cy by half image height instead
-double K[9] = { 6.5308391993466671e+002, 0.0, 3.1950000000000000e+002, 0.0, 6.5308391993466671e+002, 2.3950000000000000e+002, 0.0, 0.0, 1.0 };
-double D[5] = { 7.0834633684407095e-002, 6.9140193737175351e-002, 0.0, 0.0, -1.3073460323689292e+000 };
+double K[9] = {547.8821031175033, 0.0, 316.8179229292352, 0.0, 546.8025415399077, 245.33270488686517, 0.0, 0.0, 1.0};
+double D[5] = {0.2663900119691654, -1.684762159964911, -0.0031167255465185447, -0.01624038941312117, 5.668034353870581};
 
 int main()
 {
     //open cam
     cv::VideoCapture cap(0);
+    cap.set(CV_CAP_PROP_FRAME_WIDTH,640);
+    cap.set(CV_CAP_PROP_FRAME_HEIGHT,480);
     if (!cap.isOpened())
-        {
+    {
         std::cout << "Unable to connect to camera" << std::endl;
         return EXIT_FAILURE;
-        }
+    }
     //Load face detection and pose estimation models (dlib).
     dlib::frontal_face_detector detector = dlib::get_frontal_face_detector();
     dlib::shape_predictor predictor;
-    dlib::deserialize("shape_predictor_68_face_landmarks.dat") >> predictor;
+    dlib::deserialize("/home/roach/.dlib/shape_predictor_68_face_landmarks.dat") >> predictor;
 
     //fill in cam intrinsics and distortion coefficients
     cv::Mat cam_matrix = cv::Mat(3, 3, CV_64FC1, K);
