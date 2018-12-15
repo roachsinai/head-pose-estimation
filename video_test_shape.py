@@ -3,12 +3,10 @@ import dlib
 import numpy as np
 from imutils import face_utils
 
-face_landmark_path = './shape_predictor_68_face_landmarks.dat'
+face_landmark_path = '/home/roach/.dlib/shape_predictor_68_face_landmarks.dat'
 
-K = [6.5308391993466671e+002, 0.0, 3.1950000000000000e+002,
-     0.0, 6.5308391993466671e+002, 2.3950000000000000e+002,
-     0.0, 0.0, 1.0]
-D = [7.0834633684407095e-002, 6.9140193737175351e-002, 0.0, 0.0, -1.3073460323689292e+000]
+K = [547.8821031175033, 0.0, 316.8179229292352, 0.0, 546.8025415399077, 245.33270488686517, 0.0, 0.0, 1.0]
+D = [0.2663900119691654, -1.684762159964911, -0.0031167255465185447, -0.01624038941312117, 5.668034353870581]
 
 cam_matrix = np.array(K).reshape(3, 3).astype(np.float32)
 dist_coeffs = np.array(D).reshape(5, 1).astype(np.float32)
